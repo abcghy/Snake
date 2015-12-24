@@ -13,15 +13,15 @@ import javax.swing.ImageIcon;
 public class Scene extends Frame{
 	
 	static boolean GAMEOVER = false;
-	static boolean PAUSE = false;
+	static boolean PAUSE = true;
 	
 	PaintThread paintThread = new PaintThread();
 	
 	private Snake snake = new Snake(this);
 	private Apple apple = new Apple(new Point(2, 2), snake, this);	
 	
-	static final int WIDTH = 30;
-	static final int HEIGHT = 30;
+	static final int WIDTH = 35;
+	static final int HEIGHT = 35;
 	static final int SIZE = 20;
 	
 	Image offImage = null;
@@ -67,7 +67,7 @@ public class Scene extends Frame{
 						snake.changeDirection(Direction.RIGHT);	
 					}
 					break;
-				case KeyEvent.VK_P:
+				case KeyEvent.VK_SPACE:
 					if (PAUSE == true) {
 						PAUSE = false;
 					} else {
@@ -107,7 +107,9 @@ public class Scene extends Frame{
 		
 		if (PAUSE == true) {
 			Image img = new ImageIcon("pic/pause.png").getImage();
+			Image spaceImg = new ImageIcon("pic/space.png").getImage();
 			g.drawImage(img, (WIDTH * SIZE - img.getWidth(null)) / 2, (HEIGHT * SIZE - img.getHeight(null)) / 2, null);
+			g.drawImage(spaceImg, 0, 0, null);
 		}
 		
 		g.setColor(oColor);
